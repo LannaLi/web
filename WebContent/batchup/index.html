@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>图片上传</title>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../bootstrap/css/font-awesome.min.css" rel="stylesheet">
+<link href="up.css" rel="stylesheet">
+<script type="text/javascript" src="../bootstrap/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="upImg.js"></script>
+</head>
+<body>
+<button class="btn btn-primary btn-lg" id="btn">
+	开始演示弹屏
+</button>
+<div class="panel panel-primary" style="display:none"id="upImgPanel">
+    <div class="panel-heading">
+    	<button type="button" class="close" id="btn-close">&times;</button>
+        <h3 class="panel-title" id="upTitle"></h3>
+    </div>
+    <div class="panel-body">
+        <form id="batchUpForm">
+        	<div>
+        		<ul class="list-inline" id="ulPreImg">
+        			<li class="li "id="li">
+        				<input type="file" name="file"  accept="image/*" id="file" value=""  multiple/>
+        				<img alt="" src="a11.png" class="rowImg">
+        			</li>
+        			
+        		</ul>
+        	</div>
+        	<input type="button" value="确定" class="btn btn-primary btn-upLoad"style="float:right;">
+        </form>
+    </div>
+</div>
+<aside class="mask works-mask">
+	<div class="mask-content">
+		<p class="del-p ">您确定要删除图片吗？</p>
+		<p class="check-p"><span class="del-com wsdel-ok">确定</span><span class="wsdel-no">取消</span></p>
+	</div>
+</aside>
+
+
+<script type="text/javascript">
+$(function(){
+	var delParent;                            //点击删除的父类
+	var defaults ={
+		'type':["jpg","png","bmp","jpeg"],    //文件上传类型           
+		'size':1024 * 1024 * 30                   //文件上传的大小
+	}
+	
+	$('#file').change(function(){
+		var inputId = $(this).attr('id')    //input的id
+		var file = document.getElementById(inputId);
+		var fileList = file.files;      //获取到了选择的所有的照片
+		//var li = $('#'+inputId).parent();   //用来预览选择的图片
+		var ul = $('#'+inputId).parent().parent();  //追加li的
+		
+		var doneLen = $(ul).children().length
+		var toLen = fileList.length + $(ul).children().length  //已选的图片和再选的图片的总数
+		if(fileList.length >9 || toLen > 9){
+			alert('一次最多上传8张图片')
+		}else if(doneLen < 9){
+			//验证图片上传的类型
+			fileList = validationImgType(fileList)
+			for(var k=0;k<fileList.length;k++){
+				var url = window.URL.createObjectURL(fileList[k])
+				var li = $('<li class="li" id="li'+fileList[k].size+'"></li>')
+				var button = $('<img class="closeImg" id="delete'+fileList[k].size+'" src="<%=basePath%>/images/up/a7.png">')
+				var img = $('<img class="rowImg" name="imgs" id="img'+fileList[k].size+'">')
+				$(img).data('file',fileList[k])
+				$(img).attr('src',url)
+				button.appendTo(li)
+				img.appendTo(li)
+				li.appendTo(ul)
+				ul.prepend(li)
+				$(button).click(function(e){
+					$('.works-mask').show();
+					delParent = $(this).parent()
+				})
+			}
+		}
+		
+	});
+	
+	$('.wsdel-ok').click(function(){
+		delParent.remove()
+		$('.works-mask').hide();
+	})
+	$('.wsdel-no').click(function(){
+		$('.works-mask').hide();
+	})
+	//验证图片的方法
+	function validationImgType(list){
+		var imgList = [];
+		for(var i=0;i<list.length;i++){
+			var type = list[i].name;
+			type = type.split('.')[1];
+			var size = list[i].size;
+			if(jQuery.inArray(type,defaults.type) > -1){
+				if(size < defaults.size){
+					imgList.push(list[i])
+				}else{
+					alert('你选择的图片过大')
+				}
+			}else{
+				alert('不支持类型为'+type+'的图片')
+			}
+		}
+		return imgList;
+	}
+	
+	
+	$('.btn-upLoad').click(function(){
+		var lis = $('#ulPreImg').find('li')
+		if(lis.length == 1){
+			alert('至少要选择一张图片上传');
+			return;
+		}else if(lis.length > 1){
+			var url = "web/batchUpload.do";
+			$('#batchUpForm').ajaxSubmit({
+				type:'post',//请求类型
+				url:url,//请求路径
+				data:"{}",
+				dataType:'json',//数据类型
+				success:function(result){//回调函数
+					if(result > 0){
+						alert('成功上传'+result+'张图片');
+						$('#container').load('web/pictureList.do');
+					}
+				}
+			})
+		}
+	})
+	
+	//点击批量上传按钮
+	$('.btn_bacthUpload').click(function(){
+		 $('#upImgPanel').show(function(){
+			$('#upImgPanel').fadeIn(500,function(){
+				$('#upTitle').text('图片上传')
+			})
+		})
+	});
+	//点击x
+	$('#btn-close').click(function(){
+		var lis = $('#ulPreImg').find('li')
+		if(lis.length == 1){
+			$('#upImgPanel').hide()
+		}else if(lis.length > 1){
+			var len = lis.length-1;
+			for(var i=0;i<len;i++){
+				$(lis[i]).remove();
+				$('#upImgPanel').hide()
+			}
+		}
+		
+	});
+	
+})
+</script>
+</body>
+</html>

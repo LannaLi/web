@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+    a{text-decoration: none; color: #eee; display: block;}
+    .button{width: 200px; height: 50px; border-radius: 20px; text-align:center;line-height: 50px;}
+    .callout_button{background:#FF5B5B;margin:0 auto; }
+    .callout_button:hover{background: red;}
+    .close_button{background:#363636;float:right;}
+    .close_button:hover{background: black;}
+    .mask{width: 100%;height: 100%;background:#000;position: absolute;top: 0px;left:0px;opacity: 0.4;z-index: 8000; display: none;-moz-user-select: none; -webkit-user-select: none;}
+    .dialog{width: 380px;background:#fff; position: absolute;z-index: 9000;padding-bottom: 10px; display: none;-moz-user-select: none; -webkit-user-select: none;}
+    .dialog_head{width: 100%;height:50px;background:#4B4B4B;text-align:center;line-height: 50px;color: #eee; cursor: move;}
+    .dialog_content{width: 100%;height:300px;}
+</style>
+</head>
+<body>
+<div id="callout" class="button callout_button"><a href="#">弹出对话框</a></div>
+<div id="mask" class="mask"></div>
+<div class="dialog" id="dialog">
+    <div class="dialog_head" id="move_part">可拖拽部分</div>
+    <div class="dialog_content"></div>
+    <div class="button close_button" id="close"><a href="#">关闭</a>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+<!-- 方法一 :原生js-->
+//获取元素的方法
+function g(id){return document.getElementById(id)}
+//点击弹出框
+g('callout').onclick = function(){
+	g('mask').style.display = 'block';
+	g('dialog').style.display = 'block';
+	autoCenter(g('dialog'))
+}
+
+g('close').onclick = function(){
+	g('mask').style.display = 'none';
+	g('dialog').style.display = 'none';
+}
+if(document.attachEvent){
+	g('dialog').attachEvent('onselectstart',function(){
+		return false;
+	})
+}
+function autoCenter(el){
+	var bodyW = document.documentElement.clientWidth;
+    var bodyH = document.documentElement.clientHeight;
+    
+    var elW = el.offsetWidth;
+    var elH = el.offsetHeight;
+    
+    el.style.left = (bodyW-elW)/2 + 'px';
+    el.style.top = (bodyH-elH)/2 + 'px';
+}
+//永远居中
+window.onresize = function(){
+	autoCenter(g('dialog'))
+}
+
+//鼠标按下的时候
+//声明变量
+var mx = 0,my = 0,dx=0,dy=0,isDragging = false;
+//添加时间监听
+g('move_part').addEventListener('mousedown',function(e){
+	console.log(e)
+	var e = e || window.event;
+	
+	mx = e.pageX;
+	my = e.pageY;
+	
+	dx = g('dialog').offsetLeft;
+	dy = g('dialog').offsetTop;
+	
+	isDragging = true;
+	
+})
+
+//鼠标移动的时候
+document.onmousemove = function(e){
+	var e = e || window.event;
+	
+	var x = e.pageX;
+	var y = e.pageY;
+	
+	if(isDragging){
+		var movex = dx + x - mx;
+		var movey = dy + y - my;
+		
+		g('dialog').style.left = movex + 'px';
+		g('dialog').style.top = movey + 'px';
+	}
+}
+
+g('move_part').addEventListener('mouseup',function(){
+	isDragging = false;
+})
+</script>
+</body>
+</html>

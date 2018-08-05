@@ -1,0 +1,119 @@
+html,body{
+	width:100%;
+	margin:0px auto;
+	font-size:16px;
+	font-family:Times, TimesNR, 'New Century Schoolbook',Georgia, 'New York', serif;
+	background-color:#FFFFFF;
+	line-height:1.4em;
+}
+#mainav ul li>a{
+	text-decoration:none;
+}
+.clickClass{background-color:#1E90FF;}
+
+/*背景图片*/
+#head{
+	background-image:url('../images/1_01.gif');
+	color:#FFFFFF;
+}
+
+
+/* 导航条 */
+nav ul, nav ol{margin:0; padding:0; list-style:none;}
+#mainav .drop::after, #mainav li li .drop::after, #breadcrumb li a::after, .sidebar nav a::after{position:absolute; font-family:"FontAwesome"; font-size:10px; line-height:10px;}
+#mainav{margin:15px 0 0 0}
+#mainav ul{text-transform:uppercase;}
+#mainav ul ul{z-index:9999; position:absolute; width:160px; text-transform:none;}
+#mainav ul ul ul{left:160px; top:0;}
+#mainav li{display:inline-block; float:left; position:relative; margin:0; padding:0;}
+#mainav li:last-child{margin-right:0;}
+#mainav li li{width:100%; margin:0;}
+#mainav li a{display:block; padding:20px;}
+#mainav li li a{border:solid; border-width:0 0 1px 0;}
+#mainav .drop{}
+#mainav li li a, #mainav li li .drop{display:block; margin:0; padding:10px 15px;}
+#mainav .drop::after, #mainav li li .drop::after{content:"\f0d7";}
+#mainav .drop::after{top:25px; left:8px;}
+#mainav li li .drop::after{top:15px; left:5px;}
+#mainav ul ul{visibility:hidden; opacity:0;}
+#mainav ul li:hover > ul{visibility:visible; opacity:1;}
+#mainav li a{color:inherit;}
+#mainav .active a, #mainav a:hover, #mainav li:hover > a{color:#FFFFFF; background-color:#8ABA56;}
+#mainav li li a, #mainav .active li a{color:#FFFFFF; background-color:rgba(0,0,0,.6); border-color:rgba(0,0,0,.6);}
+#mainav li li:hover > a, #mainav .active .active > a{color:#FFFFFF; background-color:#8ABA56;}
+
+
+/*图片轮播*/
+/*.container-fluid{padding:0px 0px 0px 0px;}*/
+/*企业动态*/
+#enterprise .col-md-4 .enter-title{font-size:1.25em;font-weight:bold}
+.col-md-4,col-md-6{text-align:center;}
+.col-md-title{cursor:pointer;}
+.alignright { display: inline;float: right;}
+#dyContext{height:250.67px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+#dyContext table tr td{text-align:left;}
+#dyContext table tr td a{text-decoration:none;color:#000000;cursor:pointer;}
+/*产品*/
+#product{background-image:url('../images/product.png');background-repeat: no-repeat;;background-size:100%;}
+#product .col-md-4 p:first-child{font-size:1.25em;font-weight:bold}
+#product ul{margin:0 auto;}
+#product ul>li{margin-left:48px;}
+#product ul li:first-child{margin-left:0px;}
+#product ul li>img{margin:0 auto;}
+#product ul li>p{text-align:center;}
+/*foot*/
+#footer{background-image:url('../images/foot.png');background-repeat: no-repeat;;background-size:100%;height:277.33px;}
+#footer .col-md-foot h5>a{color:#FFFFFF;text-decoration:none;font-size:16px;}
+#footer .col-md-foot h5>a:hover{color:#8ABA56;}
+.col-md-foot{color:#FFFFFF;padding-left:0px;padding-right:0px;}
+.col-md-foot ul>li{list-style-type:none;font-size:14px;}
+.col-md-foot ul li>a{color:#FFFFFF;text-decoration:none;}
+.col-md-foot ul li>a:hover{color:#8ABA56;}
+#copyright{text-align:center;color:#FFFFFF;}
+
+
+/*人才招聘*/
+#t_con #t_title>.row{background-color:#73A82F;}
+#t_con #t_title #t_talent{padding-left:15px;font-size:20px;color:#FFFFFF}
+#t_con #t_table{height:216.67px;overflow-y:auto;}
+#t_con #t_table table tr td a{color:#000000;text-decoration:none;}
+#t_con #t_table .blueblock{width: 15px;height: 15px;background-color: #14699E;display: inline-block;}
+#talent_desc .col-md-8 .row{margin-left:15px;}
+#talent_desc .col-md-8 #talent_title{font-size:1.75em;color:#73A82F;}
+#talent_desc .col-md-8 #talent_talentdesc{margin-left:2.5em;}
+
+/*联系我们*/
+#contactus-context .row p{color:#FFFFFF;text-align:left;margin-left:15px;}
+#contactus-context .row-title{text-align:right;font-size:20px;color:#FFFFFF;padding-right:25px;}
+/*新闻*/
+#newsCenter #col-md-news>.row,#newsCenter #col-md-dyni>.row{text-align:right;font-size:20px;color:#FFFFFF;padding-right:25px;}
+#newsCenter #col-md-news>.row{background-color:#1271AA;}
+#newsCenter #col-md-dyni>.row,#newsDetail #col-md-newsDe>.row{background-color:#73A82F;}
+#newsCenter #n_table .blueblock,#newsDetail #nd_table #dyAllNews .blueblock{width: 15px;height: 15px;background-color: #14699E;display: inline-block;}
+#newsCenter #ns_table .greenblock{width: 15px;height: 15px;background-color: #73A82F;display: inline-block;}
+#newsCenter table tr td a,#newsDetail table tr td a{color:#000000;text-decoration:none;}
+#newsDetail #col-md-newsDe #newsDe_title{padding-left:18px;color:#FFFFFF;}
+#newsDetail #nd_table{height:176px;overflow-y:auto;}
+#newsDetail #nd_table table{width:100%;}
+
+/*关于我们*/
+#about_dk .row #about_title{height:176px;background-color:#686b74;color:#FFFFFF;}
+#about_dk .row #about_title .row>span{margin-left:20px;}
+#about_dk .row #about_title .row>a{color:#FFFFFF;text-decoration:none;cursor:pointer;}
+#about_dk #about_context{width:100%;}
+#about_dk #dev_context .row>p:first-child{color:#1271aa;font-size:32px;}
+#about_dk #dev_context .row>p:nth-child(2n){color:#686b74;font-size:12px;}
+#about_dk #dev_context .row>p:nth-child(2n) span{color:#1271aa;font-size:10px;margin-right:8px;}
+#about_dk #dev_context>.row:nth-child(2n-1) p:last-child>span{height:22px;width:1px;border-right:12px solid #1271aa;margin-right:8px;}
+#about_dk #dev_context>.row:nth-child(2n) p:last-child>span{height:22px;width:1px;border-right:12px solid #73A82F;margin-right:8px;}
+
+
+/*产品*/
+#paroduct_dk .container>.row:nth-child(1)>div:nth-child(2) span{height:22px;width:1px;border-right:16px solid #000000;}
+#paroduct_dk .container>.row:nth-child(1)>div:last-child{height:220px;background-color:#73A82F;color:#FFFFFF;}
+#paroduct_dk .container>.row:nth-child(1)>div:last-child>.row:nth-child(2){height:176px;margin-left:10px;overflow-y:auto;}
+#paroduct_dk .container>.row:nth-child(1)>div:last-child>.row:nth-child(2) table{width:100%;height:100%;}
+#paroduct_dk .container>.row:nth-child(1)>div:last-child>.row:nth-child(2) table a{color:#FFFFFF;text-decoration:none;cursor:pointer;}
+#paroduct_dk .container>.row:nth-child(1)>div:last-child>.row:nth-child(2) table tr td>span{margin-right:10px;}
+
+

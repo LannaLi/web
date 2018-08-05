@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="../bootstrap/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+<link href="../bootstrap/css/jquery-ui.min.css" rel="stylesheet">
+<script type="text/javascript" src="../bootstrap/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../bootstrap/js/model.js"></script>
+</head>
+<body>
+   <div>
+   		<input type="button" value="点击我有惊喜" id="btn">
+   </div>
+	
+	<form method="post" id="form" style="width:240px;height:120px;">
+		<div class="container" style="display:none" id="batchUp">
+			<div class="row">
+				<input type="file" name="imgs"  onchange="previewImg(this)" id="pictures" multiple="multiple" accept="image/x-png, image/jpg, image/jpeg, image/gif">
+			</div>
+			<div class="row" id="prePicture">
+				
+			</div>
+		</div>
+		<button type="button" value="上传" id="up"></button>
+	</form>
+	
+   <script type="text/javascript">
+   		 $(function(){
+   			 $('#btn').click(showDiv)
+   			$('#up').click(upImg)
+   		})
+   		
+   		function upImg(){
+   			 
+   		 }
+   		
+   		
+   		
+   		function showDiv(){
+   			$('#batchUp').attr('title','批量上传图片');
+   			$('#batchUp').dialog({
+   				width:830,
+   				height:520,
+   				modal:true,
+   				buttons:{
+   		        	"确定":function(){},
+   		        	"取消":function(){
+   		        		$(this).dialog('close');
+   		        		$("#prePicture").empty();
+   		        		$('#pictures').val('')
+   		        	}
+   		        }
+   			})
+   		 }
+   		 
+   		 function previewImg(file){
+   			 $.fn.preViewImg(file,$('#prePicture'))
+   		 }
+   		 function deleteThisImg(img){
+   			var id = $(img).attr('id')
+			$('#'+id).remove()
+   		 }
+   </script>
+</body>
+</html>

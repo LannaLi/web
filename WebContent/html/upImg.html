@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css.css">
+<script type="text/javascript" src="../bootstrap/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="upImg.js"></script>
+</head>
+<body>
+<input type="button" value="点我有惊喜" id="show">
+<div class="main maniPanel" id="mainPanel">
+	<div class="rowHead" id="rowMove">
+		<div class="head headline" id="headline">图片上传</div>
+		<div class="close btnClose" id="closePanel">&times;</div>
+	</div>
+	<div class="rowContent">
+		<div class="content contentMain">
+			<form class="" id="imgForm"  enctype="multipart/form-data">
+				<ul class="" id="ulImg">
+					<li>
+						<img src="meitu.jpg" class="addImg">
+						<span><input type="file" class="file" id="file" name="file" multiple></span>
+					</li>
+					<li>
+						<img class="img">
+						<span><input type="button" class="Btn closeBtn" value="&times;"></span>
+						<span><input type="text" class="Btn" ></span>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+	<div class="rowFoot">
+		<input type="button" class="close btnClose" id="closePanel" value="关闭">
+		<input type="button" class="close" id="comfirm" value="确定">
+	</div>
+</div>
+</body>
+</html>

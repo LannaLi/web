@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="bootstrap/css/font-awesome.min.css"/>
+<script type="text/javascript" src="bootstrap/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/jquery-mytable.js"></script>
+</head>
+<body>
+
+<div id="div">
+	
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		var setting = {
+			'id':'#div',
+			'field':[{
+					'name':'序号',
+					'value':''
+				},{
+					'name':'姓名',
+					'value':''
+				},{
+					'name':'年龄',
+					'value':''
+				},{
+					'name':'学历',
+					'value':''
+				},{
+					'name':'专业',
+					'value':''
+				},{
+					'name':'地址',
+					'value':''
+				}],
+			'list':[{
+					'id':12345,
+					'name':'Jerry',
+					'age':22,
+					'edu':'本科',
+					'major':'市场营销',
+					'add':'广东广州市'
+				},{
+					'id':12346,
+					'name':'Peter',
+					'age':24,
+					'edu':'本科',
+					'major':'计算机科学与应用',
+					'add':'广东广州市'
+				},{
+					'id':12347,
+					'name':'Lili',
+					'age':21,
+					'edu':'本科',
+					'major':'市场营销',
+					'add':'广东广州市'
+				},{
+					'id':12348,
+					'name':'Tom',
+					'age':23,
+					'edu':'专科',
+					'major':'纺织',
+					'add':'广东广州市'
+				},{
+					'id':12349,
+					'name':'Marry',
+					'age':25,
+					'edu':'本科',
+					'major':'会计',
+					'add':'广东广州市'
+				}]
+		}
+		$('#div').table(setting);
+	})
+</script>
+</body>
+</html>
